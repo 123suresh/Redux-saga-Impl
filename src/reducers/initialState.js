@@ -1,5 +1,5 @@
 const initialState = {
-    naxaData: null
+    naxaData: []
 }
 
 export default initialState;

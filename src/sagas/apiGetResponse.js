@@ -6,7 +6,6 @@ import { FETCH_DATA } from '../constants';
 export function* handleGetReponse() {
     try {
         const response = yield call(fetchNaxaResponse);
-        console.log("success!!!", response)
         yield put(setNaxaResponse(response));
     } catch (error) {
         console.log("got some error")

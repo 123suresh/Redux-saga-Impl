@@ -1,15 +1,33 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { fetchGetResponse } from '../actions';
+import NaxaData from './NaxaData';
+import "./NaxaData.css"
+
 
 function KeyHighlites(props) {
-    console.log("from props ", props.naxaData)
+
   useEffect(() =>{
     props.fetchGetResponse()
   },[])
+
+  console.log("naxa ", props.naxaData.naxaData)
   
   return (
-    <div>KeyHighlites</div>
+    <div className='grid-container'>
+      {props.naxaData !== null?( props.naxaData.naxaData.map(({subtitle,start_date,end_date,photo}) => (
+        <div className='grid-item'>
+          <NaxaData
+          subtitle={subtitle}
+          start_date={start_date}
+          end_date={end_date}
+          photo={photo}
+          />
+        </div>
+      ))):
+      <div><h2>Data could not be fetch</h2></div>
+      }
+    </div>
   )
 }
 

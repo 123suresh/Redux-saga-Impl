@@ -1,36 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import "./Header.css"
 
 function Header() {
+
+  const [activeLink, setActiveLink] = useState(null)
+
+  const handleActiveLink = (link) =>{
+    setActiveLink(link)
+  }
+
   return (
       <nav className='navBar'>
         <ul className='link'>
           <li>
-            <Link to="/" className={
-              window.location.pathname === "/"
-              ? "active-link"
-              : "link-li"
-            }>
+            <Link to="/" 
+            className={`link-li ${window.location.pathname === "/"?"active-link":""}`}
+            onClick={() => handleActiveLink("keyHighlits")}
+            >
               Key Highlights</Link>
           </li>
           <li>
             <Link to="/webgis"
-            className={
-              window.location.pathname === "/webgis"
-              ? "active-link"
-              : "link-li"
-            }
+            className={`link-li ${window.location.pathname === "/webgis"?"active-link":""}`}
+            onClick={() => handleActiveLink("webgis")}
             >Web GIS and Data Visualization</Link>
           </li>
           <li>
-            <Link to="/training">Training & Capacity Building</Link>
+            <Link to="/training" className="link-li">Training & Capacity Building</Link>
           </li>
           <li>
-            <Link to="/survey">Surveying and GIS Mapping</Link>
+            <Link to="/survey" className="link-li">Surveying and GIS Mapping</Link>
           </li>
           <li>
-            <Link to="/disaster">Disaster Risk Resilience</Link>
+            <Link to="/disaster" className="link-li">Disaster Risk Resilience</Link>
           </li>
         </ul>
       </nav>
